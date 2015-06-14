@@ -1,0 +1,12 @@
+C:\Users\James\Documents\KSP Mod\KerbalMorale\KerbalMorale\obj\Debug\KerbalMorale.csprojResolveAssemblyReference.cache
+C:\Users\James\Documents\KSP Mod\KerbalMorale\KerbalMorale\bin\Debug\KerbalMorale.dll
+C:\Users\James\Documents\KSP Mod\KerbalMorale\KerbalMorale\bin\Debug\KerbalMorale.pdb
+C:\Users\James\Documents\KSP Mod\KerbalMorale\KerbalMorale\bin\Debug\Assembly-CSharp.dll
+C:\Users\James\Documents\KSP Mod\KerbalMorale\KerbalMorale\bin\Debug\UnityEngine.dll
+C:\Users\James\Documents\KSP Mod\KerbalMorale\KerbalMorale\bin\Debug\Assembly-CSharp-firstpass.dll
+C:\Users\James\Documents\KSP Mod\KerbalMorale\KerbalMorale\bin\Debug\TDx.TDxInput.dll
+C:\Users\James\Documents\KSP Mod\KerbalMorale\KerbalMorale\bin\Debug\TrackIRUnity.dll
+C:\Users\James\Documents\KSP Mod\KerbalMorale\KerbalMorale\bin\Debug\Mono.Cecil.dll
+C:\Users\James\Documents\KSP Mod\KerbalMorale\KerbalMorale\bin\Debug\Mono.Security.dll
+C:\Users\James\Documents\KSP Mod\KerbalMorale\KerbalMorale\obj\Debug\KerbalMorale.dll
+C:\Users\James\Documents\KSP Mod\KerbalMorale\KerbalMorale\obj\Debug\KerbalMorale.pdb
