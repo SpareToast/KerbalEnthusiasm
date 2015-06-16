@@ -44,7 +44,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EnthusiasmUpdater.cs" />
+    <Compile Include="EnthusiasmPersistance.cs" />
+    <Compile Include="StoredEnthusiasm.cs" />
     <Compile Include="EnthusiasmLoader.cs" />
     <Compile Include="VesselQuality.cs" />
     <Compile Include="EnthusiasmStatus.cs" />
