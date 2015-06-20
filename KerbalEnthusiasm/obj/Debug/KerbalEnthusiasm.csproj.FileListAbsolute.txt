@@ -1,0 +1,11 @@
+C:\Users\James\Documents\KSP Mod\KerbalEnthusiasm\KerbalEnthusiasm\bin\Debug\KerbalEnthusiasm.dll
+C:\Users\James\Documents\KSP Mod\KerbalEnthusiasm\KerbalEnthusiasm\bin\Debug\KerbalEnthusiasm.pdb
+C:\Users\James\Documents\KSP Mod\KerbalEnthusiasm\KerbalEnthusiasm\bin\Debug\Assembly-CSharp.dll
+C:\Users\James\Documents\KSP Mod\KerbalEnthusiasm\KerbalEnthusiasm\bin\Debug\UnityEngine.dll
+C:\Users\James\Documents\KSP Mod\KerbalEnthusiasm\KerbalEnthusiasm\bin\Debug\Assembly-CSharp-firstpass.dll
+C:\Users\James\Documents\KSP Mod\KerbalEnthusiasm\KerbalEnthusiasm\bin\Debug\TDx.TDxInput.dll
+C:\Users\James\Documents\KSP Mod\KerbalEnthusiasm\KerbalEnthusiasm\bin\Debug\TrackIRUnity.dll
+C:\Users\James\Documents\KSP Mod\KerbalEnthusiasm\KerbalEnthusiasm\bin\Debug\Mono.Cecil.dll
+C:\Users\James\Documents\KSP Mod\KerbalEnthusiasm\KerbalEnthusiasm\bin\Debug\Mono.Security.dll
+C:\Users\James\Documents\KSP Mod\KerbalEnthusiasm\KerbalEnthusiasm\obj\Debug\KerbalEnthusiasm.dll
+C:\Users\James\Documents\KSP Mod\KerbalEnthusiasm\KerbalEnthusiasm\obj\Debug\KerbalEnthusiasm.pdb

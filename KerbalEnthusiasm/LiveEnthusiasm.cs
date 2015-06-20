@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace KerbalEnthusiasm
 {
-    class LiveEnthusiasm
+    public class LiveEnthusiasm
     {
 //todo: Add protections for freefloating kerbals
         
@@ -16,7 +16,6 @@ namespace KerbalEnthusiasm
         double MaxEnthusiasm = 100;
         double DefaultEnthusiasm = 100;
         double SoIChange = 25;
-
         private static Dictionary<String, EnthusiasmStatus> trackedKerbals = new Dictionary<string,EnthusiasmStatus>();
         private static Dictionary<Guid, VesselQuality> trackedVessels = new Dictionary<Guid,VesselQuality>();
 
@@ -28,31 +27,36 @@ namespace KerbalEnthusiasm
             return trackedVessels;
         }
 
-        //Populate at game start
+        //Populate at scene start
         public void PopulateLists() {
             Debug.Log("Populating!");
-            int vessA = 0;
-            int vessB = 0;
-            int kerbC = 0;
-            if ((trackedKerbals.Count == 0)||(trackedVessels.Count == 0)) {
-                Debug.Log("Trying to populate" + FlightGlobals.Vessels.Count);
-                foreach (Vessel vessel in FlightGlobals.Vessels) {
-                    Debug.Log("Populated A " + vessA++);
-                    if (vessel.loaded) {
-                        Debug.Log("Populated B " + vessB++);
-                        trackedVessels.Add(vessel.id, GetVesselQuality(vessel.id, vessel));
-                        foreach (ProtoCrewMember kerbal in vessel.GetVesselCrew())
+            Debug.Log("Trying to populate " + FlightGlobals.Vessels.Count + " ships");
+
+            foreach (Vessel vessel in FlightGlobals.Vessels) {
+                VesselWrapper wrapped = new VesselWrapper(vessel);
+                if (wrapped.vessel.loaded && wrapped.vessel.GetCrewCount()>0)
+                {
+                    Debug.Log("Trying to populate " + wrapped.vessel.name + " " + wrapped.vessel.id);
+                    if (!trackedVessels.ContainsKey(wrapped.vessel.id))
+                        trackedVessels.Add(vessel.id, GetVesselQuality(wrapped.vessel.id, wrapped));
+                    foreach (ProtoCrewMember kerbal in vessel.GetVesselCrew())
+                    {
+                        Debug.Log("0 Trying to populate " + kerbal.name + " on " + wrapped.vessel.name);
+                        if (!trackedKerbals.ContainsKey(kerbal.name))
                         {
-                            Debug.Log("Populated C " + kerbC++);
-                            trackedKerbals.Add(kerbal.name, GetEnthusiasmStatus(kerbal.name, vessel));
+                            Debug.Log("1 Trying to populate " + kerbal.name + " on " + wrapped.vessel.name);
+                            trackedKerbals.Add(kerbal.name, GetEnthusiasmStatus(kerbal.name, wrapped));
+                            Debug.Log("Populated " + kerbal.name + " on " + wrapped.vessel.name);
                         }
                     }
+                    Debug.Log("Populated " + wrapped.vessel.name + " " + vessel.id);
                 }
             }
         }
 
         // cycles through each crewmember on a vessel and updates them
-        public void UpdatePopulation(Vessel vessel) {
+        public void UpdatePopulation(VesselWrapper vessel)
+        {
             foreach (ProtoCrewMember kerbal in vessel.GetVesselCrew()) {
 
                 EnthusiasmStatus oldKerbalStatus = GetEnthusiasmStatus(kerbal.name, vessel);
@@ -66,29 +70,42 @@ namespace KerbalEnthusiasm
         }
 
         // If the kerbal has no status entry, make one. Otherwise, return kerbal's status
-        public EnthusiasmStatus GetEnthusiasmStatus(String kerbalName, Vessel vessel) {
-            EnthusiasmStatus kerbalStatus = trackedKerbals[kerbalName];
-            if (kerbalStatus == null) {
+        // 
+        public EnthusiasmStatus GetEnthusiasmStatus(String kerbalName, VesselWrapper vessel) {
+            
+            Debug.Log("2 Trying to populate " + kerbalName + " on " + vessel.name);
+            EnthusiasmStatus kerbalStatus = new EnthusiasmStatus();
+            Debug.Log("3 Trying to populate " + kerbalName + " on " + vessel.name);
+            if (!trackedKerbals.TryGetValue(kerbalName, out kerbalStatus)) {
+                Debug.Log("4 Trying to populate " + kerbalName + " on " + vessel.name);
+                kerbalStatus = new EnthusiasmStatus();
+                Debug.Log("5 Trying to populate " + kerbalName + " on " + vessel.name);
                 kerbalStatus.KerbalName = kerbalName;
+                Debug.Log("6 Trying to populate " + kerbalName + " on " + vessel.name);
                 kerbalStatus.VesselID = vessel.id;
+                Debug.Log("7 Trying to populate " + kerbalName + " on " + vessel.name);
                 kerbalStatus.Enthusiasm = DefaultEnthusiasm;
+                Debug.Log("8 Trying to populate " + kerbalName + " on " + vessel.name);
                 kerbalStatus.LastUpdate = Planetarium.GetUniversalTime();
+                Debug.Log("9 Trying to populate " + kerbalName + " on " + vessel.name);
                 kerbalStatus.LastSOI = vessel.mainBody.name;
             }
+            Debug.Log("A Trying to populate " + kerbalName + " on " + vessel.name);
             return kerbalStatus;
         }
 
         // If the vessel has no quality entry, make one. Otherwise, return vessel's quality
-        public VesselQuality GetVesselQuality(Guid VesselID, Vessel vessel) {
-            VesselQuality vesselQuality = trackedVessels[VesselID];
-            if (vesselQuality == null)
+        public VesselQuality GetVesselQuality(Guid vesselID, VesselWrapper vessel)
+        {
+            VesselQuality vesselQuality = new VesselQuality();
+            if (!trackedVessels.TryGetValue(vesselID, out vesselQuality))
                 vesselQuality = UpdateVesselQuality(vessel);
             return vesselQuality;
         }
 
         // Updates the kerbal's current enthusiasm
         // Todo: add more enthusiasm generators
-        public EnthusiasmStatus UpdateEnthusiasm(ProtoCrewMember kerbal, Vessel vessel, EnthusiasmStatus kerbalStatus, VesselQuality vesselQuality)
+        public EnthusiasmStatus UpdateEnthusiasm(ProtoCrewMember kerbal, VesselWrapper vessel, EnthusiasmStatus kerbalStatus, VesselQuality vesselQuality)
         {
             double nowTime = Planetarium.GetUniversalTime();
             double moraleLoss = (BaseEnthusiasm / vesselQuality.Morale) * Time.deltaTime * (nowTime - kerbalStatus.LastUpdate);
@@ -110,7 +127,7 @@ namespace KerbalEnthusiasm
         }
 
         //updates vessel's attributes
-        VesselQuality UpdateVesselQuality(Vessel vessel) {
+        VesselQuality UpdateVesselQuality(VesselWrapper vessel) {
             VesselQuality newVesselQuality = new VesselQuality();
             
             newVesselQuality.VesselId = vessel.id;
