@@ -44,7 +44,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="VesselWrapper.cs" />
     <Compile Include="EnthusiasmLoader.cs" />
     <Compile Include="EnthusiasmStatus.cs" />
     <Compile Include="LiveEnthusiasm.cs" />
