@@ -3,7 +3,7 @@
 
 namespace KerbalEnthusiasm
 {
-    public class EnthusiasmStatus
+    public class KerbalStatus
     {
         public string KerbalName { get; set; }
         public Guid VesselID { get; set; }

@@ -44,9 +44,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EnthusiasmLoader.cs" />
-    <Compile Include="EnthusiasmStatus.cs" />
-    <Compile Include="LiveEnthusiasm.cs" />
+    <Compile Include="EnthusiasmGUI.cs" />
+    <Compile Include="EnthusiasmLauncher.cs" />
+    <Compile Include="EnthusiasmPersistance.cs" />
+    <Compile Include="Old\EnthusiasmLoader.cs" />
+    <Compile Include="EnthusiasmManager.cs" />
+    <Compile Include="KerbalStatus.cs" />
+    <Compile Include="EthusiasmScenario.cs" />
+    <Compile Include="Old\LiveEnthusiasm.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="VesselQuality.cs" />
   </ItemGroup>

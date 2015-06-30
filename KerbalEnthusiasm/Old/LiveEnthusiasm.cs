@@ -9,17 +9,18 @@ namespace KerbalEnthusiasm
 {
     public class LiveEnthusiasm
     {
-//todo: Add protections for freefloating kerbals
+
+        //todo: Add protections for freefloating kerbals
         
         double BaseEnthusiasm = 1.0;
         double MinEnthusiasm = 0;
         double MaxEnthusiasm = 100;
         double DefaultEnthusiasm = 100;
         double SoIChange = 25;
-        private static Dictionary<String, EnthusiasmStatus> trackedKerbals = new Dictionary<string,EnthusiasmStatus>();
+        private static Dictionary<String, KerbalStatus> trackedKerbals = new Dictionary<string,KerbalStatus>();
         private static Dictionary<Guid, VesselQuality> trackedVessels = new Dictionary<Guid,VesselQuality>();
 
-        public Dictionary<String, EnthusiasmStatus> TrackedKerbals(){
+        public Dictionary<String, KerbalStatus> TrackedKerbals(){
             return trackedKerbals;
         }
 
@@ -79,26 +80,26 @@ namespace KerbalEnthusiasm
         {
             foreach (ProtoCrewMember kerbal in vessel.GetVesselCrew()) {
 
-                EnthusiasmStatus oldKerbalStatus = GetEnthusiasmStatus(kerbal.name, vessel);
+                KerbalStatus oldKerbalStatus = GetEnthusiasmStatus(kerbal.name, vessel);
                 trackedKerbals.Remove(oldKerbalStatus.KerbalName);
 
                 VesselQuality oldVesselQuality = GetVesselQuality(oldKerbalStatus.VesselID, vessel);
                 
-                EnthusiasmStatus newKerbalStatus = UpdateEnthusiasm(kerbal, vessel, oldKerbalStatus, oldVesselQuality);
+                KerbalStatus newKerbalStatus = UpdateEnthusiasm(kerbal, vessel, oldKerbalStatus, oldVesselQuality);
                 trackedKerbals.Add(newKerbalStatus.KerbalName, newKerbalStatus);
             }
         }
 
         // If the kerbal has no status entry, make one. Otherwise, return kerbal's status
         // 
-        public EnthusiasmStatus GetEnthusiasmStatus(String kerbalName, Vessel vessel) {
+        public KerbalStatus GetEnthusiasmStatus(String kerbalName, Vessel vessel) {
             
             Debug.Log("2 Trying to populate " + kerbalName + " on " + vessel.name);
-            EnthusiasmStatus kerbalStatus = new EnthusiasmStatus();
+            KerbalStatus kerbalStatus = new KerbalStatus();
             Debug.Log("3 Trying to populate " + kerbalName + " on " + vessel.name);
             if (!trackedKerbals.TryGetValue(kerbalName, out kerbalStatus)) {
                 Debug.Log("4 Trying to populate " + kerbalName + " on " + vessel.name);
-                kerbalStatus = new EnthusiasmStatus();
+                kerbalStatus = new KerbalStatus();
                 Debug.Log("5 Trying to populate " + kerbalName + " on " + vessel.name);
                 kerbalStatus.KerbalName = kerbalName;
                 Debug.Log("6 Trying to populate " + kerbalName + " on " + vessel.name);
@@ -125,7 +126,7 @@ namespace KerbalEnthusiasm
 
         // Updates the kerbal's current enthusiasm
         // Todo: add more enthusiasm generators
-        public EnthusiasmStatus UpdateEnthusiasm(ProtoCrewMember kerbal, Vessel vessel, EnthusiasmStatus kerbalStatus, VesselQuality vesselQuality)
+        public KerbalStatus UpdateEnthusiasm(ProtoCrewMember kerbal, Vessel vessel, KerbalStatus kerbalStatus, VesselQuality vesselQuality)
         {
             double nowTime = Planetarium.GetUniversalTime();
             double moraleLoss = (BaseEnthusiasm / vesselQuality.Morale) * Time.deltaTime * (nowTime - kerbalStatus.LastUpdate);

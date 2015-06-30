@@ -3,6 +3,12 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KerbalEnthusiasm", "KerbalEnthusiasm\KerbalEnthusiasm.csproj", "{8970E382-2BAA-48CF-BC5E-548EB800958C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LifeSupport", "..\LifeSupport\LifeSupport.csproj", "{4885697C-6D24-4B83-899C-8B1AE345E158}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Snacks", "..\Snacks\Snacks\Snacks.csproj", "{3463BA25-163C-4A80-B246-9E807ADABF0B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KerbalIterator", "..\KerbalIterator\KerbalIterator\KerbalIterator.csproj", "{02E2D336-B52E-440D-BF91-5E11196A3FB7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,6 +19,18 @@ Global
 		{8970E382-2BAA-48CF-BC5E-548EB800958C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8970E382-2BAA-48CF-BC5E-548EB800958C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8970E382-2BAA-48CF-BC5E-548EB800958C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4885697C-6D24-4B83-899C-8B1AE345E158}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4885697C-6D24-4B83-899C-8B1AE345E158}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4885697C-6D24-4B83-899C-8B1AE345E158}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4885697C-6D24-4B83-899C-8B1AE345E158}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3463BA25-163C-4A80-B246-9E807ADABF0B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3463BA25-163C-4A80-B246-9E807ADABF0B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3463BA25-163C-4A80-B246-9E807ADABF0B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3463BA25-163C-4A80-B246-9E807ADABF0B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{02E2D336-B52E-440D-BF91-5E11196A3FB7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{02E2D336-B52E-440D-BF91-5E11196A3FB7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{02E2D336-B52E-440D-BF91-5E11196A3FB7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{02E2D336-B52E-440D-BF91-5E11196A3FB7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
